@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-alabaster: #f8f9fa;
+  --color-slate-ink: #0f172a;
+  --color-hairline: #e2e8f0;
+  --color-copper-50: #fdf6ec;
+  --color-copper-100: #fbe8cc;
+  --color-copper-300: #f9ad4d;
+  --color-copper-500: #e29432;
+  --color-copper-600: #c97a22;
+  --color-copper-700: #9a5a17;
+  --color-ink: #0a0a0a;
+
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+
+  --ease-architect: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-alabaster text-slate-ink font-sans;
+  }
+  ::selection {
+    @apply bg-copper-300 text-ink;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-copper-500;
+  }
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+}
+
+@layer components {
+  .container-grid {
+    @apply mx-auto w-full max-w-[1400px] px-5 md:px-8 lg:px-12;
+  }
+  .label-mono {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em];
+  }
+  .hairline {
+    @apply border-hairline;
+  }
+  .copper-gradient {
+    background-image: linear-gradient(135deg, var(--color-copper-300), var(--color-copper-600));
+  }
+  .text-copper-gradient {
+    background-image: linear-gradient(120deg, var(--color-copper-300), var(--color-copper-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgb(15 23 42 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .grid-lines-dark {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .prose-samprec p {
+    @apply mb-5 text-[17px] leading-[1.75] text-slate-600;
+  }
+  .prose-samprec h2 {
+    @apply font-display mt-12 mb-4 text-2xl font-semibold tracking-tight text-slate-ink;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
